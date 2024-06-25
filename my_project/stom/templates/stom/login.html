@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2>Вход</h2>
-        <form id="registrationForm" action="{% url 'administration' %}" method="POST">
+        <form id="loginForm" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="username">Логин:</label>
@@ -23,6 +23,9 @@
             <div class="form-group">
                 <input type="submit" value="Войти">
             </div>
+            {% if error %}
+                <p class="alert">{{ error }}</p>
+            {% endif %}
         </form>
     </div>
 </body>

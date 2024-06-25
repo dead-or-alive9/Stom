@@ -2,9 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def index(request):
+def aqn(request):
     return render(request, 'stom/AQN.html')
 
 
-def info(request):
-    return render(request, 'stom/info.html')
+def login(request):
+    return render(request, 'stom/login.html')
+
+
+def administration(request):
+    return render(request, 'stom/administration.html')

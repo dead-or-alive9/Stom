@@ -42,37 +42,10 @@
       </div>
     </div>
   </div>
-
- 
-  <div class="modal fade" id="emaileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Вход</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="email-divs">
-            <div class="mb-8">
-              <label for="exampleInputEmail1" class="form-label">Логин</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-8">
-              <label for="exampleInputPassword1" class="form-label">Пароль</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary" href="Dashboard/DoctorDashboard/DashboardDoctor.html" link="Dashboard/DoctorDashboard/DashboardDoctor.html">Войти</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
  
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-      <h1 class="logo me-auto"><a href="#hero">ОЗ</a></h1>
+      <h1 class="logo me-auto"><a href="{% url 'home' %}">ОЗ</a></h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Главная</a></li>
@@ -83,7 +56,7 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-      <a href="#appointment" class="appointment-btn scrollto btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#emaileModal"><span class="d-none d-md-inline">Вход для врачей</span></a>
+      <a href="{% url 'login' %}" class="appointment-btn scrollto btn-get-started scrollto" data-bs-target="#emaileModal">Вход для админа</a>
     </div>
   </header>
 

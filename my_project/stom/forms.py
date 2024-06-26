@@ -1,38 +1,38 @@
 from django import forms
-from .models import Patients, Doctor, Specialist, Service, Doctor_specialist, Specialist_service
+from .models import *
 
 
-class Doctor_admin(forms.ModelForm):
+class DoctorAdmin(forms.ModelForm):
     class Meta:
         model = Doctor
         fields = 'all'
 
 
-class Specialist_admin(forms.ModelForm):
+class SpecialistAdmin(forms.ModelForm):
     class Meta:
         model = Specialist
         fields = 'all'
 
 
-class Service_admin(forms.ModelForm):
+class ServiceAdmin(forms.ModelForm):
     class Meta:
         model = Service
         fields = 'all'
 
 
-class Doctor_specialist_admin(forms.ModelForm):
+class DoctorSpecialistAdmin(forms.ModelForm):
     class Meta:
-        model = Doctor_specialist
+        model = DoctorSpecialist
         fields = 'all'
 
 
-class Specialist_service_admin(forms.ModelForm):
+class SpecialistServiceAdmin(forms.ModelForm):
     class Meta:
-        model = Specialist_service
+        model = SpecialistService
         fields = 'all'
 
 
-class Patients_admin(forms.ModelForm):
+class PatientsAdmin(forms.ModelForm):
     class Meta:
         model = Patients
         fields = 'all'

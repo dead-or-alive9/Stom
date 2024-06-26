@@ -20,7 +20,7 @@ class Doctor(models.Model):
         return self.fullname
 
 
-class Doctor_specialist(models.Model):
+class DoctorSpecialist(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     specialist = models.ForeignKey(Specialist, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
@@ -40,7 +40,7 @@ class Service(models.Model):
         return self.name
 
 
-class Specialist_service(models.Model):
+class SpecialistService(models.Model):
     specialist = models.ForeignKey(Specialist, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")

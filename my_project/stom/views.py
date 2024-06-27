@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 
 
+# Главная страница
 def aqn(request):
     return render(request, 'stom/AQN.html')
 

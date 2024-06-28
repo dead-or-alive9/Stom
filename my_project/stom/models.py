@@ -26,7 +26,7 @@ class DoctorSpecialist(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
-        return f"{', '.join(str(doctors) for doctors in self.doctor.all())} - {', '.join(str(specialist) for specialist in self.specialist.all())}"
+        return f"{self.doctor.fullname} - {self.specialist.name}"
 
 
 class Service(models.Model):
@@ -46,7 +46,7 @@ class SpecialistService(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
-        return f"{', '.join(str(specialist) for specialist in self.specialist.all())} - {', '.join(str(services) for services in self.service.all())}"
+        return f"{self.specialist.name} - {self.service.name}"
 
 
 class Patients(models.Model):

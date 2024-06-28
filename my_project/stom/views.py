@@ -1,12 +1,25 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from .models import *
 
 
 # Главная страница
 def aqn(request):
-    return render(request, 'stom/AQN.html')
+    hospital = Hospital.objects.first()
+    doctors = Doctor.objects.all()
+    context = {
+        'hospital': hospital,
+        'doctors': doctors
+    }
+    return render(request, 'stom/AQN.html', context)
+
+
+def doctor_detail(request, slug):
+    doctor = get_object_or_404(Doctor, slug=slug)
+    specialists = DoctorSpecialist.objects.filter(doctor=doctor)
+    return render(request, 'stom/doctor.html', {'doctor': doctor, 'specialists': specialists})
 
 
 @login_required

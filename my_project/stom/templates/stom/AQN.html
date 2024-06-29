@@ -129,9 +129,6 @@
                 {%endfor%}
 
             </div>
-            <div class="text-center mt-4">
-                <button id="loadMoreDoctors" class="btn btn-primary">Еще врачи</button>
-            </div>
             <div id="moreDoctors" class="row d-none">
 
             </div>
@@ -262,14 +259,6 @@
       const loadMoreBtn = document.getElementById('loadMoreDoctors');
       const moreDoctors = document.getElementById('moreDoctors');
 
-      loadMoreBtn.addEventListener('click', function () {
-        moreDoctors.classList.toggle('d-none');
-        if (moreDoctors.classList.contains('d-none')) {
-          loadMoreBtn.textContent = 'Еще врачи';
-        } else {
-          loadMoreBtn.textContent = 'Скрыть врачей';
-        }
-      });
     });
 </script>
 </body>

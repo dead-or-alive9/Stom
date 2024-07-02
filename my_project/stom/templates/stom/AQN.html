@@ -135,38 +135,36 @@
         </div>
     </section>
 
-
-    <div class="container mt-5" id="jaziliw">
-        <h1>Запись к врачу</h1>
-        <form id="appointmentForm">
-            <div class="form-group">
-                <label for="fullName">ФИО</label>
-                <input type="text" class="form-control" id="fullName" required/>
-            </div>
-            <div class="form-group-1">
-                <div class="form-number-div">
-                    <label for="number">Номер Телефона</label>
-                    <input type="text" class="form-control-1" id="number" required placeholder="+998"/>
-                </div>
-                <div class="form-date-div">
-                    <label for="date">Дата</label>
-                    <input type="date" class="form-control-1" id="date" required/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="doctor">Доктор</label>
-                <select class="form-control" id="doctor" required>
-                    <option value="">Выберите доктора</option>
-                    <option value="1">Доктор 1</option>
-                    <option value="2">Доктор 2</option>
-
-                </select>
-            </div>
-            <button type="submit" id="submitBtn" class="appointment-btn scrollto btn-get-started scrollto jaziliw-btn">
-                <span class="d-none d-md-inline">Записаться</span>
-            </button>
-        </form>
-    </div>
+<div class="container mt-5" id="jaziliw">
+    <h1>Запись к врачу</h1>
+    <form id="appointmentForm" method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="fullName">ФИО</label>
+            <input type="text" class="form-control" id="fullName" name="name" required/>
+        </div>
+        <div class="form-group">
+            <label for="number">Номер Телефона</label>
+            <input type="text" class="form-control" id="number" name="number" required placeholder="+998"/>
+        </div>
+        <div class="form-group">
+            <label for="date">Дата</label>
+            <input type="date" class="form-control" id="date" name="data" required/>
+        </div>
+        <div class="form-group">
+            <label for="doctor">Доктор</label>
+            <select class="form-control" id="doctor" name="doctor" required>
+                <option value="">Выберите доктора</option>
+                {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.fullname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" id="submitBtn" class="appointment-btn scrollto btn-get-started scrollto jaziliw-btn">
+            <span class="d-none d-md-inline">Записаться</span>
+        </button>
+    </form>
+</div>
 
 
     <section id="contact" class="contact">
@@ -227,39 +225,41 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('appointmentForm');
-      const submitBtn = document.getElementById('submitBtn');
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('appointmentForm');
+  const submitBtn = document.getElementById('submitBtn');
 
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
+  form.addEventListener('submit', function (event) {
+    const fullName = document.getElementById('fullName').value.trim();
+    const number = document.getElementById('number').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const doctor = document.getElementById('doctor').value.trim();
 
+    if (fullName === '' || number === '' || date === '' || doctor === '') {
+      alert('Пожалуйста, заполните все поля');
+      event.preventDefault(); // Formani yuborishni to'xtatish
+      return;
+    }
 
-        const fullName = document.getElementById('fullName').value.trim();
-        const number = document.getElementById('number').value.trim();
-        const date = document.getElementById('date').value.trim();
-        const doctor = document.getElementById('doctor').value.trim();
+    const modalWindow = new bootstrap.Modal(document.getElementById('ModalWindow'));
+    modalWindow.show();
 
-        if (fullName === '' || number === '' || date === '' || doctor === '') {
-          alert('Пожалуйста, заполните все поля');
-          return;
-        }
-
-
-        const modalWindow = new bootstrap.Modal(document.getElementById('ModalWindow'));
-        modalWindow.show();
-      });
-
-
-      const modalElement = document.getElementById('ModalWindow');
-      modalElement.addEventListener('hidden.bs.modal', function () {
-        form.reset();
-      });
-
-      const loadMoreBtn = document.getElementById('loadMoreDoctors');
-      const moreDoctors = document.getElementById('moreDoctors');
-
+    modalWindow._element.addEventListener('hidden.bs.modal', function () {
+      form.submit(); // Modal oyna yopilgandan keyin formani yuborish
     });
+
+<!--    event.preventDefault(); // Formani yuborishni to'xtatish-->
+<!--  });-->
+
+  const modalElement = document.getElementById('ModalWindow');
+  modalElement.addEventListener('hidden.bs.modal', function () {
+    form.reset();
+  });
+
+  const loadMoreBtn = document.getElementById('loadMoreDoctors');
+  const moreDoctors = document.getElementById('moreDoctors');
+});
+
 </script>
 </body>
 </html>

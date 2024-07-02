@@ -3,15 +3,25 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from .models import *
+from .forms import PatientForm
 
 
 # Главная страница
 def aqn(request):
     hospital = Hospital.objects.first()
     doctors = Doctor.objects.all()
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to a success page or home page
+    else:
+        form = PatientForm()
+
     context = {
         'hospital': hospital,
-        'doctors': doctors
+        'doctors': doctors,
+        'form': form
     }
     return render(request, 'stom/AQN.html', context)
 

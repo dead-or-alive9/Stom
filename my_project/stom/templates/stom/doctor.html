@@ -1,0 +1,120 @@
+<!-- doctor_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ doctor.fullname }}</title>
+    <link rel="stylesheet" href="{% static 'stom/css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .profile-header {
+            background: linear-gradient(135deg, #50b3a2 0%, #007a79 100%);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 50px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 5px solid #fff;
+            margin-top: -75px;
+        }
+        .profile-header h1 {
+            margin: 20px 0 10px;
+            font-size: 2.5em;
+        }
+        .profile-header p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: -30px;
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-content .profile-details,
+        .profile-content .profile-contact {
+            flex: 1;
+            padding: 20px;
+        }
+        .profile-content .profile-details {
+            border-right: 1px solid #f4f4f9;
+        }
+        .profile-content .profile-details h2,
+        .profile-content .profile-contact h3 {
+            margin-top: 0;
+            color: #50b3a2;
+        }
+        .profile-content .profile-details p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .profile-content .profile-contact p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+                margin-top: 0;
+                padding: 10px;
+            }
+            .profile-content .profile-details,
+            .profile-content .profile-contact {
+                border-right: none;
+                border-bottom: 1px solid #f4f4f9;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="{{ doctor.img.url }}" alt="{{ doctor.fullname }}">
+            <h1>{{ doctor.fullname }}</h1>
+            <p>{{ doctor.history }}</p>
+        </div>
+        <div class="profile-content">
+            <div class="profile-details">
+                <h2>Biography</h2>
+                <p>{{ doctor.history }}</p>
+                <h2>Specialties</h2>
+                <ul>
+                    {% for doctor_specialist in specialists %}
+                        <li>{{ doctor_specialist.specialist.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="profile-contact">
+                <h3>Contact Information</h3>
+                <p>Phone: {{ doctor.phone_number }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

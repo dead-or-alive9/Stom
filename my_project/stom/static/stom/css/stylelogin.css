@@ -33,7 +33,8 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="email"],
+/* Объединенные стили для всех полей ввода */
+input[type="text"],
 input[type="password"] {
     width: calc(100% - 22px);
     padding: 10px;

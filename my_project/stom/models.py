@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class Specialist(models.Model):
@@ -26,7 +27,7 @@ class DoctorSpecialist(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
-        return f"{', '.join(str(doctors) for doctors in self.doctor.all())} - {', '.join(str(specialist) for specialist in self.specialist.all())}"
+        return f"{self.doctor.fullname} - {self.specialist.name}"
 
 
 class Service(models.Model):
@@ -46,13 +47,13 @@ class SpecialistService(models.Model):
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
-        return f"{', '.join(str(specialist) for specialist in self.specialist.all())} - {', '.join(str(services) for services in self.service.all())}"
+        return f"{self.specialist.name} - {self.service.name}"
 
 
 class Patients(models.Model):
     STATUS_CHOICES = (
         ('draft', ' '),
-        ('published', 'Осмотр  окончен '),
+        ('published', 'Осмотр окончен'),
     )
     PAYMENT_CHOICES = (
         ('draft', 'Не оплачено'),
@@ -61,7 +62,7 @@ class Patients(models.Model):
     name = models.CharField(max_length=50, blank=False)
     lastname = models.CharField(max_length=50, null=True, blank=True)
     number = models.CharField(max_length=15, blank=False)
-    data = models.DateField(auto_now_add=True)
+    data = models.DateField()
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='Patients')
     start_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     time_over = models.DateTimeField(null=True, blank=True)
@@ -70,6 +71,11 @@ class Patients(models.Model):
                               default='draft')
     status_payment = models.CharField(max_length=50, choices=PAYMENT_CHOICES, default='draft')
     slug = models.SlugField(max_length=250, unique=True, db_index=True, verbose_name="URL")
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.name}-{self.data}")
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

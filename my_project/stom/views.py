@@ -52,3 +52,7 @@ def login_view(request):
             return render(request, 'stom/login.html', {'error': 'Неправильный логин или пароль'})
 
     return render(request, 'stom/login.html')
+
+
+def doctors(request):
+    return render(request, 'stom/doctors.html')

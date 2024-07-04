@@ -3,358 +3,263 @@
 <html lang="ru">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Онлайн запись к стоматологу</title>
-  <link href="{% static 'stom/images/favicon.png' %}" rel="icon">
-  <link href="{% static 'stom/images/apple-touch-icon.png' %}" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Poppins" rel="stylesheet">
-  <link href="{% static 'stom/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link type="text/css" href="{% static 'stom/css/style.css' %}" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Онлайн запись к стоматологу</title>
+    <link href="{% static 'stom/images/favicon.png' %}" rel="icon">
+    <link href="{% static 'stom/images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Poppins" rel="stylesheet">
+    <link href="{% static 'stom/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'stom/css/style.css' %}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 <style>
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .mt-4 {
-    margin-top: 1.5rem;
-  }
-  
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-4 {
+      margin-top: 1.5rem;
+    }
+
 </style>
- 
-  <div class="modal fade" id="ModalWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="ModalWindow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content-div">
-        <div class="modal-window-main-div">
-          <div class="modal-window-div">
-            <span class="modal-window-main-span">Спасибо за регистрацию!</span>
-            <span class="modal-window-span">Скоро мы вам перезвоним.</span>
-          </div>
-          <form action="" class="modal-window-form">
-            <button class="modal-window-btn">На главную страницу</button>
-          </form>
+        <div class="modal-content-div">
+            <div class="modal-window-main-div">
+                <div class="modal-window-div">
+                    <span class="modal-window-main-span">Спасибо за регистрацию!</span>
+                    <span class="modal-window-span">Скоро мы вам перезвоним.</span>
+                </div>
+                <form action="" class="modal-window-form">
+                    <button class="modal-window-btn">На главную страницу</button>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
- 
-  <header id="header" class="fixed-top">
+</div>
+
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-      <h1 class="logo me-auto"><a href="{% url 'home' %}">ОЗ</a></h1>
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Главная</a></li>
-          <li><a class="nav-link scrollto" href="#about">О нас</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Врачи</a></li>
-          <li><a class="nav-link scrollto" href="#jaziliw">Записаться</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Связаться с нами</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-      <a href="{% url 'login' %}" class="appointment-btn scrollto btn-get-started scrollto" data-bs-target="#emaileModal">Вход для админа</a>
+        <h1 class="logo me-auto"><a href="{% url 'home' %}">ОЗ</a></h1>
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">Главная</a></li>
+                <li><a class="nav-link scrollto" href="#about">О нас</a></li>
+                <li><a class="nav-link scrollto" href="#doctors">Врачи</a></li>
+                <li><a class="nav-link scrollto" href="#jaziliw">Записаться</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Связаться с нами</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <a href="{% url 'login' %}" class="appointment-btn scrollto btn-get-started scrollto"
+           data-bs-target="#emaileModal">Вход для админа</a>
     </div>
-  </header>
+</header>
 
-  
-  <section id="hero" class="d-flex align-items-center">
+
+<section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Стоматология <br>Онлайн запись</h1>
-      <a class="nav-link scrollto" id="jaziliwbtn" href="#jaziliw">Запись</a>
+        <h1>{{hospital.tite }}</h1>
+        <a class="nav-link scrollto" id="jaziliwbtn" href="#jaziliw">Запись</a>
     </div>
-  </section>
+</section>
 
-  <main id="main">
- 
+<main id="main">
+
     <section id="why-us" class="why-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="content">
-              <h3>Почему выбирают нас?</h3>
-              <p>
-                Потому что мы делаем свою работу вовремя и быстро. Удобная цена, куча возможностей и современные технологии!
-              </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                        <h3>Почему выбирают нас?</h3>
+                        <p>
+                            Потому что мы делаем свою работу вовремя и быстро. Удобная цена, куча возможностей и
+                            современные технологии!
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
- 
+
     <section id="about" class="about">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
-            <a href="" class="glightbox play-btn mb-4"></a>
-          </div>
-          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-            <h3>О нас</h3>
-            <p class="about_p">ОЗ - это современная стоматологичесуий центр который открылся недавно и уже популярность среди потребителей. Мы используем современные технологии чтобы вам было комфортно и не было больно. Наша платформа безопасна и уникальна. </p>
-          </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+                    <a href="" class="glightbox play-btn mb-4"></a>
+                </div>
+                <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+                    <h3>О нас</h3>
+                    <p class="about_p">{{ hospital.description }} </p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
- 
+
     <section id="doctors" class="doctors">
-      <div class="container">
-        <div class="section-title">
-          <h2>Врачи</h2>
+        <div class="container">
+            <div class="section-title">
+                <h2>Врачи</h2>
+            </div>
+            <div class="row" id="doctorList">
+                {% for doctor in doctors %}
+                <div class="col-lg-6">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="{{doctor.img.url }}" class="img-fluid" alt={{doctor.fullname}}></div>
+                        <div class="member-info">
+                            <h4>{{doctor.fullname}}</h4>
+                            {% for specialist in doctor.doctorspecialist_set.all %}
+                            <span>{{ specialist.specialist.name }}</span>
+                            {% endfor %}
+                            <p>Учился в великобритании...</p>
+                            <div class="social">
+                                <a href="{% url 'doctor_detail' doctor.slug %}"><i
+                                        class="about-doctors-a">Подробнее...</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+            </div>
+            <div id="moreDoctors" class="row d-none">
+
+            </div>
         </div>
-        <div class="row" id="doctorList">
-        
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Глав. врач</span>
-                <p>Учился в великобритании...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Глав. врач</span>
-                <p>Учился в великобритании...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Глав. врач</span>
-                <p>Учился в великобритании...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Глав. врач</span>
-                <p>Учился в великобритании...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-     
-        </div>
-        <div class="text-center mt-4">
-          <button id="loadMoreDoctors" class="btn btn-primary">Еще врачи</button>
-        </div>
-        <div id="moreDoctors" class="row d-none">
-   
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Специалист</span>
-                <p>Описание...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Специалист</span>
-                <p>Описание...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Специалист</span>
-                <p>Описание...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 mt-4">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="{% static 'stom/images/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Виктор Анатоливич</h4>
-                <span>Специалист</span>
-                <p>Описание...</p>
-                <div class="social">
-                  <a href="{% url 'doctors' %}"><i class="about-doctors-a">Подробнее...</i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-      </div>
     </section>
 
- 
-    <div class="container mt-5" id="jaziliw">
-      <h1>Запись к врачу</h1>
-      <form id="appointmentForm">
+<div class="container mt-5" id="jaziliw">
+    <h1>Запись к врачу</h1>
+    <form id="appointmentForm" method="post" action="{% url 'home' %}">
+        {% csrf_token %}
         <div class="form-group">
-          <label for="fullName">ФИО</label>
-          <input type="text" class="form-control" id="fullName" required />
+            <label for="fullName">ФИО</label>
+            <input type="text" class="form-control" id="fullName" name="name" required/>
         </div>
-        <div class="form-group-1">
-          <div class="form-number-div">
+        <div class="form-group">
             <label for="number">Номер Телефона</label>
-            <input type="text" class="form-control-1" id="number" required placeholder="+998" />
-          </div>
-          <div class="form-date-div">
-            <label for="date">Дата</label>
-            <input type="date" class="form-control-1" id="date" required />
-          </div>
+            <input type="text" class="form-control" id="number" name="number" required placeholder="+998"/>
         </div>
         <div class="form-group">
-          <label for="doctor">Доктор</label>
-          <select class="form-control" id="doctor" required>
-            <option value="">Выберите доктора</option>
-            <option value="1">Доктор 1</option>
-            <option value="2">Доктор 2</option>
-      
-          </select>
+            <label for="date">Дата</label>
+            <input type="date" class="form-control" id="date" name="data" required/>
+        </div>
+        <div class="form-group">
+            <label for="doctor">Доктор</label>
+            <select class="form-control" id="doctor" name="doctor" required>
+                <option value="">Выберите доктора</option>
+                {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.fullname }}</option>
+                {% endfor %}
+            </select>
         </div>
         <button type="submit" id="submitBtn" class="appointment-btn scrollto btn-get-started scrollto jaziliw-btn">
-          <span class="d-none d-md-inline">Записаться</span>
+            <span class="d-none d-md-inline">Записаться</span>
         </button>
-      </form>
-    </div>
+    </form>
+</div>
 
- 
+
     <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>Связаться с нами</h2>
-        </div>
-      </div>
-      <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17454.675443378273!2d59.585541722463866!3d42.45765844769835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41dd9b7f63664041%3A0x25f51535d8894b07!2sUzum%20Market!5e0!3m2!1sru!2s!4v1717067636569!5m2!1sru!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-lg-4">
-            <div class="info">
-              <div class="address">
-                <h4>Город:</h4>
-                <p>Нукус</p>
-              </div>
-              <div class="email">
-                <h4>Эл. почта:</h4>
-                <p>stom@gmail.com</p>
-              </div>
-              <div class="phone">
-                <h4>Телефон:</h4>
-                <p>+998 93 123 45 67</p>
-              </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Связаться с нами</h2>
             </div>
-          </div>
         </div>
-      </div>
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17454.675443378273!2d59.585541722463866!3d42.45765844769835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41dd9b7f63664041%3A0x25f51535d8894b07!2sUzum%20Market!5e0!3m2!1sru!2s!4v1717067636569!5m2!1sru!2s"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="info">
+                        <div class="address">
+                            <h4>Город:</h4>
+                            <p>{{ hospital.address }}</p>
+                        </div>
+                        <div class="email">
+                            <h4>Эл. почта:</h4>
+                            <p>stom@gmail.com</p>
+                        </div>
+                        <div class="phone">
+                            <h4>Телефон:</h4>
+                            <p>{{ hospital.phone_number }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
+</main>
 
- 
-  <footer id="footer">
+
+<footer id="footer">
     <div class="container d-md-flex py-4">
-      <div class="me-md-auto text-center text-md-start footer-text-div">
-        <div class="copyright">
-          &copy; Авторские права <strong><span>ОЗ</span></strong>. Все права защищены.
+        <div class="me-md-auto text-center text-md-start footer-text-div">
+            <div class="copyright">
+                &copy; Авторские права <strong><span>ОЗ</span></strong>. Все права защищены.
+            </div>
+            <div class="credits">Команда разработчиков <a href="">ОЗ</a></div>
         </div>
-        <div class="credits">Команда разработчиков <a href="">ОЗ</a></div>
-      </div>
     </div>
-  </footer>
+</footer>
 
- 
-  <script src="static/stom/js/bootstrap.bundle.min.js"></script>
-  <script src="static/stom/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="static/stom/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="static/stom/vendor/php-email-form/validate.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
- 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('appointmentForm');
-      const submitBtn = document.getElementById('submitBtn');
+<script src="static/stom/js/bootstrap.bundle.min.js"></script>
+<script src="static/stom/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/stom/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/stom/vendor/php-email-form/validate.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-      form.addEventListener('submit', function (event) {
-        event.preventDefault(); 
 
-   
-        const fullName = document.getElementById('fullName').value.trim();
-        const number = document.getElementById('number').value.trim();
-        const date = document.getElementById('date').value.trim();
-        const doctor = document.getElementById('doctor').value.trim();
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('appointmentForm');
+  const submitBtn = document.getElementById('submitBtn');
 
-        if (fullName === '' || number === '' || date === '' || doctor === '') {
-          alert('Пожалуйста, заполните все поля');
-          return;
-        }
+  form.addEventListener('submit', function (event) {
+    const fullName = document.getElementById('fullName').value.trim();
+    const number = document.getElementById('number').value.trim();
+    const date = document.getElementById('date').value.trim();
+    const doctor = document.getElementById('doctor').value.trim();
 
- 
-        const modalWindow = new bootstrap.Modal(document.getElementById('ModalWindow'));
-        modalWindow.show();
-      });
+    if (fullName === '' || number === '' || date === '' || doctor === '') {
+      alert('Пожалуйста, заполните все поля');
+      event.preventDefault(); // Formani yuborishni to'xtatish
+      return;
+    }
 
- 
-      const modalElement = document.getElementById('ModalWindow');
-      modalElement.addEventListener('hidden.bs.modal', function () {
-        form.reset();
-      });
+    const modalWindow = new bootstrap.Modal(document.getElementById('ModalWindow'));
+    modalWindow.show();
 
-      const loadMoreBtn = document.getElementById('loadMoreDoctors');
-      const moreDoctors = document.getElementById('moreDoctors');
-
-      loadMoreBtn.addEventListener('click', function () {
-        moreDoctors.classList.toggle('d-none');
-        if (moreDoctors.classList.contains('d-none')) {
-          loadMoreBtn.textContent = 'Еще врачи';
-        } else {
-          loadMoreBtn.textContent = 'Скрыть врачей';
-        }
-      });
+    modalWindow._element.addEventListener('hidden.bs.modal', function () {
+      form.submit(); // Modal oyna yopilgandan keyin formani yuborish
     });
-  </script>
+
+<!--    event.preventDefault(); // Formani yuborishni to'xtatish-->
+<!--  });-->
+
+  const modalElement = document.getElementById('ModalWindow');
+  modalElement.addEventListener('hidden.bs.modal', function () {
+    form.reset();
+  });
+
+  const loadMoreBtn = document.getElementById('loadMoreDoctors');
+  const moreDoctors = document.getElementById('moreDoctors');
+});
+
+</script>
 </body>
 </html>
